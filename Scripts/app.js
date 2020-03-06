@@ -1,3 +1,10 @@
+/**
+ * Author: Spence McComb
+ * Student ID: 100426427
+ * Date Completed: 2020/03/06
+ */
+
+
 class Contact
 {
     constructor(contactName = "", emailAddress = "", contactNumber = "", contactMessage = "")
