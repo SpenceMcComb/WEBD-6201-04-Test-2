@@ -99,10 +99,33 @@ let app;
     function DisplayTaskList()
     {
         document.title = "WEBD6201 - Task List";
+        let numberOfItems = 2;
+        let theTaskList = $("#taskList");
+        console.log(theTaskList.children());
 
         // Task 1 a
         $("#newTaskButton").on("click", function(){
-            
+            // Increment the number of items in the list and set a default text to be inserted
+            numberOfItems++;
+            let theText = "Example Task " + numberOfItems;
+
+            // Change the text if the user has entered something into the associated textbox
+            if ($("#taskTextInput").val() != "")
+            {
+                theText = $("#taskTextInput").val();
+            }
+
+            // Add the new li
+            let liToBeAdded = `
+            <li class="list-group-item" id="task">
+                <span id="taskText">${theText}</span>
+                <span class="float-right">
+                    <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                    <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+                </span>
+                <input type="text" class="form-control edit-task editTextInput">
+            </li>`;
+            theTaskList.append(liToBeAdded);
         });
 
         // Task 1 b
