@@ -127,6 +127,7 @@ let app;
             theTaskList.append(liToBeAdded);
         });
 
+
         // Task 1 b
         $("ul").on("click", ".editButton", function(){
             // Identify which button has been pressed and show the appropriate textbox input
@@ -155,9 +156,18 @@ let app;
             });
         });
 
+
         // Task 1 c
         $("ul").on("click", ".deleteButton", function(){
-           
+            // Delete the current task if the user agrees to. Otherwise, do nothing
+            if (confirm("Are you sure?"))
+            {
+                let currentTask = $(this).parent().parent();
+                currentTask.remove();
+
+                // Decrement the number of items in the array
+                numberOfItems--;
+            }         
         });
     }
 
