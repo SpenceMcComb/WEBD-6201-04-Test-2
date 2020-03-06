@@ -101,7 +101,6 @@ let app;
         document.title = "WEBD6201 - Task List";
         let numberOfItems = 2;
         let theTaskList = $("#taskList");
-        console.log(theTaskList.children());
 
         // Task 1 a
         $("#newTaskButton").on("click", function(){
@@ -130,7 +129,30 @@ let app;
 
         // Task 1 b
         $("ul").on("click", ".editButton", function(){
-           
+            // Identify which button has been pressed and show the appropriate textbox input
+            let theTextInput = $(this).parent().parent().children()[2];
+            $(theTextInput).show();
+            $(theTextInput).select();
+            
+            // Change the text on the press of the enter button
+            $(".editTextInput").on("keypress", function(e){
+                // Ensure there is data entered
+                if (e.keyCode == 13 && $(this).val() != "")
+                {
+                    // Identify the current list item and task
+                    let theListItem = $(this).parent().children()[0];
+                    let theNewTask = $(this).val();
+
+                    // Set the new task and hide the input field
+                    theListItem.textContent = theNewTask;
+                    $(this).hide();
+                }
+                else if (e.keyCode == 13)
+                {
+                    // Hide the field if there is no data and enter has been pressed
+                    $(this).hide();
+                }                
+            });
         });
 
         // Task 1 c
